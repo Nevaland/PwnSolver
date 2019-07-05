@@ -28,14 +28,14 @@ elif (($1 == 1)); then
 
 # DOWNLOAD
 # example) scp -P 2222 asm@pwnable.kr:/home/asm/asm.c ./
-elif (($1 == 2))	
+elif (($1 == 2)); then
 	if (($# < 2)); then	
 		expect -c "spawn scp -r -P ${port} ${user}@${addr}: ./" \
 		-c "expect -re \"password:\"" \
 		-c "send ${password}\r" \
 		-c "interact"
 		echo "[+] Downloaded" ${user} 
-		exit	
+		exit
 	fi
 
 	args=("$@")
