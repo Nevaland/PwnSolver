@@ -14,7 +14,7 @@ if (($# < 1)); then
 	echo "[+] 1. ssh"
 	echo "[+] 2. scp (whth path, filename argument)"
 	echo "       -> .sh 2 {path} {filename} {filename} ..."
-	echo "       or .sh 2 {path}" 
+	echo "       or .sh 2" 
 	exit
 
 # CONNECTION
@@ -29,10 +29,7 @@ elif (($1 == 1)); then
 # DOWNLOAD
 # example) scp -P 2222 asm@pwnable.kr:/home/asm/asm.c ./
 elif (($1 == 2))	
-	if (($# < 2)); then
-		echo "To Need More Arguments"
-		exit
-	elif (($# == 2)); then	
+	if (($# < 2)); then	
 		expect -c "spawn scp -r -P ${port} ${user}@${addr}: ./" \
 		-c "expect -re \"password:\"" \
 		-c "send ${password}\r" \
